@@ -1,0 +1,311 @@
+/* === GLOBALS === */
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: url('./assets/games-chills-bg.png') center center / cover no-repeat fixed;
+  background-blend-mode: multiply;
+}
+
+.app-container {
+  background: rgba(11, 18, 40, 0.84);
+  min-height: 100vh;
+  border-radius: 24px;
+  margin: 0 auto;
+  max-width: 1100px;
+  box-shadow: 0 8px 36px #101a3e44;
+  padding: 32px 22px 40px 22px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: #fffbe6;
+  font-family: inherit;
+  margin-bottom: 0.7em;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* === BUTTON ANIMATIONS === */
+/* Glowing animation keyframes */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 8px #4ade80, 0 0 20px #4ade80, 0 0 30px #8beaf7;
+  }
+  50% {
+    box-shadow: 0 0 14px #22c55e, 0 0 30px #22c55e, 0 0 40px #0891b2;
+  }
+  100% {
+    box-shadow: 0 0 8px #4ade80, 0 0 20px #4ade80, 0 0 30px #8beaf7;
+  }
+}
+
+/* Vibration keyframe for subtle shake */
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+/* === MAIN MENU BUTTONS === */
+.main-menu-btn {
+  padding: 15px 40px;
+  font-size: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(120deg,#4ade80 80%,#8beaf7 100%);
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px #4ade80;
+  animation: glow 3s infinite ease-in-out;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  user-select: none;
+}
+
+.main-menu-btn:hover {
+  background: linear-gradient(120deg,#8beaf7 80%,#4ade80 100%);
+  animation: glow 1.5s infinite ease-in-out;
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow:
+    0 0 12px #22c55e,
+    0 0 24px #22c55e,
+    0 0 40px #0891b2,
+    0 0 60px #22c55e;
+}
+
+.main-menu-btn:active {
+  animation: none;
+  transform: scale(0.95) rotate(0deg);
+  box-shadow: none;
+  background: linear-gradient(120deg,#35d871 80%,#66c1f0 100%);
+}
+
+/* Slight vibration effect on focus */
+.main-menu-btn:focus {
+  outline: none;
+  animation: vibrate 0.3s linear 2;
+  box-shadow: 0 0 14px #22c55e, 0 0 30px #22c55e;
+}
+
+/* Friends room input and button */
+.friends-input {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 1em;
+  margin-right: 6px;
+  border: 1px solid #bbb;
+  background: #f2f8ff;
+  transition: box-shadow 0.3s ease;
+}
+
+.friends-input:focus {
+  outline: none;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+/* Friends join button */
+.friends-button {
+  background: linear-gradient(120deg,#6366f1 80%,#91a7ff 100%);
+  color: #fff;
+  box-shadow: 0 0 10px #6366f1;
+  animation: glow 4s infinite alternate;
+  transition: transform 0.18s ease;
+}
+
+.friends-button:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 12px #1e40af,
+    0 0 24px #1e40af,
+    0 0 36px #3b82f6;
+}
+
+.friends-button:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* === PANELS & GAME SECTIONS === */
+.panel, .game-panel, .main-panel, 
+.chess-board, .snake-ladder-container,
+.meme-board, .leaderboard, .user-stats-panel, .voice-chat-panel {
+  background: rgba(255,255,255,0.92);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #2223;
+  padding: 25px 30px;
+  margin-top: 40px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* Fade-in for panels */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Specific game button styles with extra pulse */
+
+/* Chess Buttons */
+.chess-btn {
+  padding: 12px 27px;
+  font-size: 17px;
+  background: linear-gradient(120deg,#baf7fc 80%,#8beaf7 100%);
+  border: none;
+  border-radius: 8px;
+  color: #222;
+  font-weight: bold;
+  box-shadow: 0 0 12px #5ad9ff;
+  animation: pulse 4s infinite ease-in-out;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chess-btn:hover {
+  background: linear-gradient(120deg,#8beaf7 80%,#baf7fc 100%);
+  box-shadow: 0 0 18px #22caff, 0 0 25px #0891b2;
+  transform: scale(1.07);
+}
+
+.chess-btn:active {
+  animation: none;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* Snake & Ladder Buttons */
+.snake-btn {
+  padding: 12px 27px;
+  background: linear-gradient(120deg,#8ef77a 80%,#c9ffea 100%);
+  color: #1c3127;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 14px #2a8f27;
+  animation: pulse 3.6s infinite ease-in-out;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.snake-btn:hover {
+  background: linear-gradient(120deg,#c9ffea 80%,#8ef77a 100%);
+  box-shadow: 0 0 18px #34b830, 0 0 30px #51ff66;
+  transform: scale(1.06);
+}
+
+.snake-btn:active {
+  animation: none;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* Meme Generator Buttons */
+.meme-btn {
+  padding: 12px 27px;
+  background: linear-gradient(120deg,#ffe7ba 80%,#e0c97f 100%);
+  color: #512c19;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 14px #ffb21c;
+  animation: pulse 3.8s infinite ease-in-out;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meme-btn:hover {
+  background: linear-gradient(120deg,#e0c97f 80%,#ffe7ba 100%);
+  box-shadow: 0 0 20px #ffc428, 0 0 40px #ffec6f;
+  transform: scale(1.06);
+}
+
+.meme-btn:active {
+  animation: none;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+    box-shadow: 0 0 12px rgba(255,255,255,0.72);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.2) saturate(1.1);
+    box-shadow: 0 0 22px rgba(255,255,255,0.9);
+    transform: scale(1.04);
+  }
+}
+
+/* Leaderboard styling */
+.leaderboard {
+  background: rgba(13,21,47,0.87);
+  border-radius: 14px;
+  box-shadow: 0 4px 22px #5269c133;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.leaderboard-header {
+  color: #daf7fc;
+  font-weight: 600;
+  font-size: 1.6em;
+  margin-bottom: 1em;
+}
+
+/* User Stats Panel */
+.user-stats-panel {
+  background: rgba(44,63,31,0.75);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px #5eab2960;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.user-stats-title {
+  color: #c8f7bd;
+  font-weight: 600;
+  font-size: 1.3em;
+  margin-bottom: 0.7em;
+}
+
+/* Voice Chat Panel */
+.voice-chat-panel {
+  background: rgba(64,188,242,0.15);
+  border: 1.5px dashed #51baf3;
+  border-radius: 12px;
+  padding: 19px 20px;
+  margin: 10px auto 22px auto;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* === BUTTONS GENERIC === */
+button, input, select, label {
+  font-size: 1.08em;
+  user-select: none;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input:focus, select:focus, button:focus {
+  outline: 2px solid #49bcdb77;
+  background: #f3fcff;
+}
+
+/* === UTILITY CLASSES === */
+.mt-24 { margin-top: 24px; }
+.mb-24 { margin-bottom: 24px; }
+.p-12 { padding: 12px; }
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 11px; background: #212445; }
+::-webkit-scrollbar-thumb { background: #49bcdb99; border-radius: 6px; }
